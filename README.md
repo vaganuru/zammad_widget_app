@@ -1,0 +1,1 @@
+# zammad_widget_app
