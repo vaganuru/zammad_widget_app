@@ -1,48 +1,38 @@
 <template>
   <div style="border:2px solid red; padding:1rem;">
-    <h3>Today's Tickets</h3>
+    <h2>Today's Tickets</h2>
     <ul v-if="tickets.length">
       <li v-for="ticket in tickets" :key="ticket.id">{{ ticket.title }}</li>
     </ul>
-    <p v-else>No tickets for today.</p>
+    <div v-else>No tickets for today.</div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 
-interface Ticket {
-  id: number;
-  title: string;
-}
-
-const tickets = ref<Ticket[]>([]);
+const tickets = ref<{ id: string; title: string }[]>([]);
 
 onMounted(async () => {
   try {
-    const res = await fetch('/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute("content");
+
+    const res = await fetch("/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken || ""
+      },
       body: JSON.stringify({
-        query: `
-          {
-            todaysTickets {
-              id
-              title
-            }
-          }
-        `
+        query: `query { todaysTickets { id title } }`
       })
     });
 
     const json = await res.json();
-    if (json.data && json.data.todaysTickets) {
-      tickets.value = json.data.todaysTickets;
-    } else {
-      console.error('GraphQL response invalid', json);
-    }
+    tickets.value = json.data?.todaysTickets || [];
+
   } catch (err) {
-    console.error('Error fetching tickets', err);
+    console.error("Error fetching tickets", err);
   }
 });
 </script>

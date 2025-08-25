@@ -1,13 +1,15 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 # db/seeds.rb
-Ticket.create!(title: "Server Issue", status: "open", created_at: Time.zone.today)
-Ticket.create!(title: "Login Bug", status: "closed", created_at: Time.zone.today)
-Ticket.create!(title: "Feature Request", status: "open", created_at: 1.day.ago)
+
+# Clear existing tickets
+Ticket.destroy_all
+
+# Tickets for today
+Ticket.create!(title: "Fix login bug", status: "open", created_at: Time.current)
+Ticket.create!(title: "Update homepage banner", status: "open", created_at: Time.current)
+Ticket.create!(title: "Deploy new version", status: "open", created_at: Time.current)
+
+# Tickets for previous days
+Ticket.create!(title: "Old ticket 1", status: "closed", created_at: 2.days.ago)
+Ticket.create!(title: "Old ticket 2", status: "pending", created_at: 5.days.ago)
+
+puts "Seeded #{Ticket.count} tickets."

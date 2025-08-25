@@ -1,9 +1,9 @@
-module Types
-  class TicketType < Types::BaseObject
-    field :id, ID, null: false
-    field :title, String, null: false
-    field :status, String, null: false
-    field :created_at, GraphQL::Types::ISO8601DateTime, null: false
-    field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+module Queries
+  class TodaysTickets < BaseQuery
+    type [Types::TicketType], null: false
+
+    def resolve
+      Ticket.where("DATE(created_at) = ?", Date.today)
+    end
   end
 end

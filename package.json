@@ -7,6 +7,9 @@
     "dev": "node esbuild.config.js --watch"
   },
   "dependencies": {
+    "@apollo/client": "^4.0.0",
+    "graphql": "^16.11.0",
+    "rxjs": "^7.8.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {

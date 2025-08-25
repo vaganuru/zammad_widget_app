@@ -1,12 +1,12 @@
-import { gql } from 'graphql-request';
+import { gql } from '@apollo/client/core';
 
-export const TODAYS_TICKETS_QUERY = gql`
-  query {
+export const GET_TODAYS_TICKETS = gql`
+  query GetTodaysTickets {
     todaysTickets {
       id
       title
-      createdAt
       status
+      createdAt
     }
   }
 `;

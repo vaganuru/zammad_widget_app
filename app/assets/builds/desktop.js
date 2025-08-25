@@ -7901,26 +7901,19 @@ var TodaysTicketsWidget_default = /* @__PURE__ */ defineComponent({
     const tickets = ref([]);
     onMounted(async () => {
       try {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute("content");
         const res = await fetch("/graphql", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": csrfToken || ""
+          },
           body: JSON.stringify({
-            query: `
-          {
-            todaysTickets {
-              id
-              title
-            }
-          }
-        `
+            query: `query { todaysTickets { id title } }`
           })
         });
         const json = await res.json();
-        if (json.data && json.data.todaysTickets) {
-          tickets.value = json.data.todaysTickets;
-        } else {
-          console.error("GraphQL response invalid", json);
-        }
+        tickets.value = json.data?.todaysTickets || [];
       } catch (err) {
         console.error("Error fetching tickets", err);
       }
@@ -7938,7 +7931,7 @@ var _hoisted_3 = { key: 1 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", _hoisted_1, [
     _cache[0] || (_cache[0] = createBaseVNode(
-      "h3",
+      "h2",
       null,
       "Today's Tickets",
       -1
@@ -7962,7 +7955,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         128
         /* KEYED_FRAGMENT */
       ))
-    ])) : (openBlock(), createElementBlock("p", _hoisted_3, "No tickets for today."))
+    ])) : (openBlock(), createElementBlock("div", _hoisted_3, "No tickets for today."))
   ]);
 }
 

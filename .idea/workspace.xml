@@ -10,6 +10,9 @@
       <change afterPath="$PROJECT_DIR$/.github/dependabot.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/zammad_widget_app.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.kamal/hooks/docker-setup.sample" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.kamal/hooks/post-app-boot.sample" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.kamal/hooks/post-deploy.sample" afterDir="false" />
@@ -27,31 +30,26 @@
       <change afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Procfile.dev" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Rakefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/builds/desktop.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/assets/images/.keep" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/tailwind/application.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/controllers/concerns/.keep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/desktop_controller.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/esbuild.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/frontend/components/TodaysTicketsWidget.vue" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/frontend/components/TodaysTicketsWidget.vue " afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/frontend/desktop.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/frontend/graphql/queries/todays_ticket.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/graphql/queries/base_query.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/graphql/queries/todays_tickets.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/graphql/query_type.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/graphql/types/base_object.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/graphql/types/ticket_type.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/graphql/types/.keep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/graphql/types/query_type.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/graphql/zammad_widget_app_schema.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/helpers/desktop_helper.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/jobs/application_job.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/mailers/application_mailer.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/models/application_record.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/models/concerns/.keep" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/models/ticket.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/views/layouts/mailer.html.erb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/views/layouts/mailer.text.erb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/views/pwa/manifest.json.erb" afterDir="false" />
@@ -88,12 +86,13 @@
       <change afterPath="$PROJECT_DIR$/config/puma.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/config/queue.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/config/recurring.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/config/storage.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/db/cable_schema.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/db/cache_schema.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migrate/20250821142056_create_tickets.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/db/queue_schema.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/esbuild.config.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/tasks/.keep" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/log/.keep" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/400.html" afterDir="false" />
@@ -108,6 +107,7 @@
       <change afterPath="$PROJECT_DIR$/storage/.keep" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/test/application_system_test_case.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/test/controllers/.keep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/controllers/desktop_controller_test.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/test/fixtures/files/.keep" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/test/helpers/.keep" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/test/integration/.keep" afterDir="false" />
@@ -120,6 +120,26 @@
       <change afterPath="$PROJECT_DIR$/tmp/storage/.keep" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vendor/.keep" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vendor/javascript/.keep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/builds/desktop.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/builds/desktop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/graphql_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/graphql_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/frontend/components/TodaysTicketsWidget.vue" beforeDir="false" afterPath="$PROJECT_DIR$/app/frontend/components/TodaysTicketsWidget.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/frontend/desktop.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/frontend/desktop.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/frontend/graphql/queries/todays_ticket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/frontend/graphql/queries/todays_ticket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/base_mutation.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/graphql/queries/base_query.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/graphql/queries/todays_tickets.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/graphql/queries/todays_tickets.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/graphql/resolvers/base_resolver.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/graphql/types/base_object.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/graphql/types/ticket_type.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/graphql/types/ticket_type.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/desktop/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/desktop/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.yarn-integrity" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.yarn-integrity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +160,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Rebasing main",
     "last_opened_file_path": "/home/vanganur/development/github/test_project/zammad_widget_app/app/assets/build",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

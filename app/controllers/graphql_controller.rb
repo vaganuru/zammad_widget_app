@@ -1,52 +1,36 @@
-# frozen_string_literal: true
-
 class GraphqlController < ApplicationController
-  # If accessing from outside this domain, nullify the session
-  # This allows for outside API access while preventing CSRF attacks,
-  # but you'll have to authenticate your user separately
-  # protect_from_forgery with: :null_session
-
+  protect_from_forgery with: :null_session
+  skip_before_action :verify_authenticity_token, only: [:execute]
   def execute
-    variables = prepare_variables(params[:variables])
-    query = params[:query]
-    operation_name = params[:operationName]
-    context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
-    }
-    result = ZammadWidgetAppSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = ZammadWidgetAppSchema.execute(
+      params[:query],
+      variables: params[:variables],
+      context: {},
+      operation_name: params[:operationName]
+    )
     render json: result
-  rescue StandardError => e
-    raise e unless Rails.env.development?
-    handle_error_in_development(e)
+  rescue => e
+    render json: { errors: [{ message: e.message }] }, status: 500
   end
 
   private
 
-  # Handle variables in form data, JSON body, or a blank value
-  def prepare_variables(variables_param)
-    case variables_param
+  def ensure_hash(ambiguous_param)
+    case ambiguous_param
     when String
-      if variables_param.present?
-        JSON.parse(variables_param) || {}
-      else
-        {}
-      end
-    when Hash
-      variables_param
-    when ActionController::Parameters
-      variables_param.to_unsafe_hash # GraphQL-Ruby will validate name and type of incoming variables.
+      ambiguous_param.present? ? JSON.parse(ambiguous_param) : {}
+    when Hash, ActionController::Parameters
+      ambiguous_param
     when nil
       {}
     else
-      raise ArgumentError, "Unexpected parameter: #{variables_param}"
+      raise ArgumentError, "Unexpected parameter: #{ambiguous_param}"
     end
   end
 
   def handle_error_in_development(e)
     logger.error e.message
     logger.error e.backtrace.join("\n")
-
-    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+    render json: { error: { message: e.message, backtrace: e.backtrace }, data: {} }, status: 500
   end
 end
