@@ -1,0 +1,4 @@
+import { createApp } from 'vue';
+import DesktopView from './views/DesktopView.vue';
+
+createApp(DesktopView).mount('#app');

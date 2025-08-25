@@ -1,0 +1,19 @@
+{
+  "name": "zammad_widget_app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node esbuild.config.js",
+    "dev": "node esbuild.config.js --watch"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.5.20",
+    "esbuild": "^0.25.9",
+    "esbuild-plugin-vue": "^0.2.4",
+    "esbuild-plugin-vue3": "^0.4.2",
+    "typescript": "^5.2.2"
+  }
+}
